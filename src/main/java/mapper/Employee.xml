@@ -11,9 +11,10 @@
         	file,
         	description
         from
-        	test
+        	employee
         where
         	id = #{id}
+        and name= #{name}
     </select>
     <select id="getSearchAll" resultMap="SearchResult">
      select
@@ -22,7 +23,7 @@
         	file,
         	description
         from
-        	test
+        	employee
 </select>
 <update id="update">
     update test
@@ -32,6 +33,12 @@
         description = #{desription}
   where id = #{id}
 </update>
+
+<insert id="register">
+INSERT INTO employee (id , name ,file,description)
+        values (#{id},#{name},#{file},#{description})
+</insert>
+
 <delete id ="delete" parameterType="int">
     delete
     from
