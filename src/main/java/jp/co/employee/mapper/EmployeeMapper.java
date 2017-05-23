@@ -1,9 +1,9 @@
-package mapper;
+package jp.co.employee.mapper;
 import java.util.List;
 
-import dto.EmployeeDto;
-import dto.RegusterDto;
-import entity.Employee;
+import jp.co.employee.dto.EmployeeDto;
+import jp.co.employee.dto.RegusterDto;
+import jp.co.employee.entity.Employee;
 
 public interface  EmployeeMapper {
      	Employee getEmployee(int id, String name);
@@ -14,6 +14,6 @@ public interface  EmployeeMapper {
 
 		int register(RegusterDto dto);
 
-		int delete(int id);
+		int delete(EmployeeDto dto);
 		}
 

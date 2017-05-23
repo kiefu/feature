@@ -14,7 +14,7 @@
     <p>
         <c:out value="${message}"></c:out>
     </p>
-    <form:form modelAttribute="searchlistform">
+    <form:form modelAttribute="employee">
         <table>
             <tbody>
             	<tr>

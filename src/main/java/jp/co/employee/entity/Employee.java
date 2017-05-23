@@ -1,4 +1,4 @@
-package entity;
+package jp.co.employee.entity;
 
 public class Employee {
 	private Integer id;

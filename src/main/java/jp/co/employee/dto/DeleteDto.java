@@ -1,8 +1,8 @@
-package dto;
+package jp.co.employee.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-public class EmployeeDto {
+public class DeleteDto {
 
 		private final int idMAX=8;
 		private final int naMAX=40;
