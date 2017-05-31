@@ -4,27 +4,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>詳細画面</title>
 </head>
 <table>
 <tr>
 <td>ID　：</td>
-<td>{$id}</td>
+<td>{$deatail.id}</td>
 </tr>
 <tr>
 <td>氏名　：</td>
-<td>{$name}</td>
+<td>{$deatail.name}</td>
 </tr>
 <tr>
 <td>画像</td>
+<td>{$deatail.file}</td>
 </tr>
 <tr>
 <td>備考　：</td>
-<td>{$description}</td>
+<td>{$deatail.description}</td>
 </tr>
 </table>
-<input type="submit" value="更新" />
-<input type="submit" value="削除" />
+<form:input path="{$deatail.id}"/></p>
+<input type="submit" value="更新"  a href="${pageContext.request.contextPath}/update/${detail.id}/"/>
+<input type="submit" value="削除" a href="${pageContext.request.contextPath}/delete/${detail.id}/">
 <body>
 
 </body>

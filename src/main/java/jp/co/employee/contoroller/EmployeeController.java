@@ -1,5 +1,8 @@
 package jp.co.employee.contoroller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,12 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.co.employee.dto.DeleteDto;
 import jp.co.employee.dto.DetailDto;
-import jp.co.employee.dto.EmployeeDto;
 import jp.co.employee.dto.RegusterDto;
+import jp.co.employee.dto.SearchDto;
+import jp.co.employee.dto.UpdateDto;
 import jp.co.employee.entity.Employee;
 import jp.co.employee.service.EmployeeService;
-
 
 /**
  *
@@ -25,33 +29,62 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 //メイン画面
+
+	/**
+	 *
+	 * @param model
+	 * @return search
+	 *初期画面
+	 */
+	@RequestMapping(value="/search/",method = RequestMethod.GET)
+	public String INIT(Model model) {
+	    return "search";
+	}
+
 		/**
 		 *
 		 * @param model
 		 * @param id
 		 * @param name
-		 * @return  INIT とかの方がいい
-		 *
+		 * @return search
 		 *
 		 */
-		@RequestMapping(value="/employee/",method = RequestMethod.GET)
+	 private List<SearchDto> searchList = new ArrayList<>();
+	@RequestMapping(value="/search/",method = RequestMethod.POST)
 		public String search(Model model, @PathVariable int id ,String name) {
-		    Employee Employee = employeeService.getEmployee(id, name);
-		    model.addAttribute("employee", Employee );
+			List<SearchDto> searchList = (List<SearchDto>) employeeService.getEmployee(id, name);
+			 model.addAttribute("searchList", searchList );
 		    return "employee";
+
+		}
+		/**
+		 *
+		 * @param <SearchDto>
+		 * @param model
+		 * @param id
+		 * @param name
+		 * @return  全件検索
+		 *
+		 *POSTにする。searchにする。
+		 */
+		@RequestMapping(value = "/search/", method = RequestMethod.POST)
+		public <SearchDto> String findAll(Model model) {
+		    List<jp.co.employee.dto.SearchDto> findall= employeeService.getFindAll();
+		    model.addAttribute("find", findall);
+		    return "findall";
 		}
 		/**
 		 *
 		 * @param model
 		 * @param id
 		 * @param name
-		 * @return  INIT とかの方がいい
+		 * @return 詳細画面
 		 *
-		 *POSTにする。searchにする。
+		 *POSTにする。
 		 */
-		@RequestMapping(value = "/detail/", method = RequestMethod.POST)
-		public String deatail(Model model,@PathVariable int id,String name) {
-			Employee employee =employeeService.getEmployee(id, name);
+		@RequestMapping(value = "/detail/{id}", method = RequestMethod.POST)
+		public String deatail(Model model,@PathVariable int id) {
+			Employee employee = employeeService.getEmployee(id);
 		    DetailDto Detail = new DetailDto();
 		    Detail.setId(employee.getId());
 		    Detail.setName(employee.getName());
@@ -61,23 +94,46 @@ public class EmployeeController {
 		    model.addAttribute("detail", Detail);
 		    return "detail";
 		}
-//登録画面
+
+		/**
+		 *
+		 * @param model
+		 * @param id
+		 * @param name
+		 * @return 登録画面
+		 *
+		 */
 		@RequestMapping(value = "/register", method = RequestMethod.POST)
 		public String register(@ModelAttribute RegusterDto regusterDto, Model model) {
 		    int count = employeeService.register(regusterDto);
+		    model.addAttribute("reguster", regusterDto);
 		    return "redirect:/search/";
 		}
-//データの更新
+		/**
+		 *
+		 * @param model
+		 * @param id
+		 * @param name
+		 * @return 更新画面
+		 *
+		 */
 		@RequestMapping(value = "/update", method = RequestMethod.POST)
-		public String update(@ModelAttribute EmployeeDto updatedto, Model model) {
+		public String update(@ModelAttribute UpdateDto updatedto, Model model) {
 		    int count = employeeService.update(updatedto);
 		    return "redirect:/search/";
 		}
-//データの削除
+		/**
+		 *
+		 * @param model
+		 * @param id
+		 * @param name
+		 * @return 削除画面
+		 *
+		 */
 		@RequestMapping(value = "/delete/", method = RequestMethod.GET)
-		public String testDelete(@ModelAttribute EmployeeDto deleteDto, Model model) {
+		public String testDelete(@ModelAttribute DeleteDto deleteDto, Model model) {
 			int count = employeeService.delete(deleteDto);
-		    return "search";
+	    return "search";
 		}
 }
 

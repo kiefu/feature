@@ -4,7 +4,7 @@
 <mapper namespace="jp.co.Kenshu.mapper.SearchMapper">
     <resultMap id="SearchResult" type="jp.co.Kenshu.entity.Search">
     </resultMap>
-    <select id="getSearch" resultMap="SearchResult" parameterType="int">
+    <select id="getEmployee" resultMap="SearchResult" parameterType="int">
         select
         	id,
         	name,
@@ -14,7 +14,9 @@
         	employee
         where
         	id = #{id}
+       <if test="name != null">
         and name= #{name}
+       </if>
     </select>
     <select id="getSearchAll" resultMap="SearchResult">
      select

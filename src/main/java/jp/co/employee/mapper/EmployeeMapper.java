@@ -1,19 +1,26 @@
 package jp.co.employee.mapper;
 import java.util.List;
 
-import jp.co.employee.dto.EmployeeDto;
+import jp.co.employee.dto.DeleteDto;
 import jp.co.employee.dto.RegusterDto;
+import jp.co.employee.dto.SearchDto;
+import jp.co.employee.dto.UpdateDto;
 import jp.co.employee.entity.Employee;
 
 public interface  EmployeeMapper {
-     	Employee getEmployee(int id, String name);
+		List<SearchDto> getEmployee(Integer id, String name);
 
-		List<EmployeeDto> getEmployeeAll();
+		List<SearchDto> getFindAll();
 
-		int update(EmployeeDto dto);
+		int update(UpdateDto updatedto);
 
-		int register(RegusterDto dto);
+		int register(RegusterDto regusterdto);
 
-		int delete(EmployeeDto dto);
+		int delete(DeleteDto deletedto);
+
+		Employee getEmployee(int id);
+
+
+
 		}
 
