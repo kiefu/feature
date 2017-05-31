@@ -25,8 +25,8 @@ public class EmployeeService {
 		 *
 		 * */
 	    public List<SearchDto> getEmployee(int id, String name) {
-	    	List<SearchDto> entity = employeeMapper.getEmployee(id,name);
-	        return entity;
+	    	List<SearchDto> searchlist = employeeMapper.getEmployee(id,name);
+	        return searchlist;
 	    }
 		/**
 		 * @author tono
@@ -34,8 +34,8 @@ public class EmployeeService {
 		 *
 		 * */
 	    public List<SearchDto> getFindAll() {
-	        List<SearchDto> employeeList = employeeMapper.getFindAll();
-	        return employeeList;
+	        List<SearchDto> searchlist = employeeMapper.getFindAll();
+	        return searchlist;
 	    }
 
 	    public Employee getEmployee(int id) {

@@ -54,7 +54,7 @@ public class EmployeeController {
 		public String search(Model model, @PathVariable int id ,String name) {
 			List<SearchDto> searchList = (List<SearchDto>) employeeService.getEmployee(id, name);
 			 model.addAttribute("searchList", searchList );
-		    return "employee";
+		    return "searchList";
 
 		}
 		/**
@@ -70,8 +70,8 @@ public class EmployeeController {
 		@RequestMapping(value = "/search/", method = RequestMethod.POST)
 		public <SearchDto> String findAll(Model model) {
 		    List<jp.co.employee.dto.SearchDto> findall= employeeService.getFindAll();
-		    model.addAttribute("find", findall);
-		    return "findall";
+		    model.addAttribute("searchList", findall);
+		    return "searchList";
 		}
 		/**
 		 *
