@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.co.employee.dto.DeleteDto;
-import jp.co.employee.dto.RegusterDto;
+import jp.co.employee.dto.RegisterDto;
 import jp.co.employee.dto.SearchDto;
 import jp.co.employee.dto.UpdateDto;
 import jp.co.employee.entity.Employee;
@@ -46,7 +46,7 @@ public class EmployeeService {
 			   int count = employeeMapper.update(updatedto);
 			   return count;
 		}
-		public int register(RegusterDto regusterdto) {
+		public int register(RegisterDto regusterdto) {
 			   int count = employeeMapper.register(regusterdto);
 			   return count;
 		}

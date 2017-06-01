@@ -7,27 +7,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form modelAttribute="Register">
-<table>
+
+
 <h3>登録</h3>
+<table>
+<form:form modelAttribute="register">
 <tr>
-<td>ID　：</td><input type="text" value="ID" />
+<td>ID　：</td><form:input type="text" value="id" />
 </tr>
 <tr>
-<td>氏名　：</td><input type="text" value="name" />
+<td>氏名　：</td><form:input type="text" value="name" />
 </tr>
 <tr>
 <td>画像: </td>
-<td>ファイルアップロード </td><form type="file" value="image" />
+<td>ファイルアップロード </td><form type="file" value="file" />
 </tr>
 <tr>
 <td>備考　：</td>
-<form type="text" value="description" /></td>
+<form type="text" value="description" />
 </tr>
 <tr>
 <td>確定</td><form type="text" value="確定" /></td>
 </tr>
+</form:form>
 </table>
- </form:form>
+
 </body>
 </html>

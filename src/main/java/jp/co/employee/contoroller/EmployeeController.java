@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.employee.dto.DeleteDto;
 import jp.co.employee.dto.DetailDto;
-import jp.co.employee.dto.RegusterDto;
+import jp.co.employee.dto.RegisterDto;
 import jp.co.employee.dto.SearchDto;
 import jp.co.employee.dto.UpdateDto;
 import jp.co.employee.entity.Employee;
@@ -67,7 +67,7 @@ public class EmployeeController {
 		 *
 		 *POSTにする。searchにする。
 		 */
-		@RequestMapping(value = "/search/", method = RequestMethod.POST)
+	/*	@RequestMapping(value = "/search/", method = RequestMethod.POST)
 		public <SearchDto> String findAll(Model model) {
 		    List<jp.co.employee.dto.SearchDto> findall= employeeService.getFindAll();
 		    model.addAttribute("searchList", findall);
@@ -79,7 +79,7 @@ public class EmployeeController {
 		 * @param id
 		 * @param name
 		 * @return 詳細画面
-		 *
+		 *entutyでいけるけど
 		 *POSTにする。
 		 */
 		@RequestMapping(value = "/detail/{id}", method = RequestMethod.POST)
@@ -103,10 +103,16 @@ public class EmployeeController {
 		 * @return 登録画面
 		 *
 		 */
+		@RequestMapping(value = "/register", method = RequestMethod.GET)
+		public String register(Model model) {
+			RegisterDto registerDto=new RegisterDto();
+		    model.addAttribute("register", registerDto);
+		    return "redirect:/reg/";
+		}
 		@RequestMapping(value = "/register", method = RequestMethod.POST)
-		public String register(@ModelAttribute RegusterDto regusterDto, Model model) {
-		    int count = employeeService.register(regusterDto);
-		    model.addAttribute("reguster", regusterDto);
+		public String register(@ModelAttribute RegisterDto registerDto, Model model) {
+		    int count = employeeService.register(registerDto);
+		    model.addAttribute("register", registerDto);
 		    return "redirect:/search/";
 		}
 		/**
@@ -134,6 +140,12 @@ public class EmployeeController {
 		public String testDelete(@ModelAttribute DeleteDto deleteDto, Model model) {
 			int count = employeeService.delete(deleteDto);
 	    return "search";
+		}
+		public List<SearchDto> getSearchList() {
+			return searchList;
+		}
+		public void setSearchList(List<SearchDto> searchList) {
+			this.searchList = searchList;
 		}
 }
 

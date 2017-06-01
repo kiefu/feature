@@ -11,23 +11,25 @@
     <h1>
         <a>検索</a>
     </h1>
-    <form:form modelAttribute="employee">
-        <table>
+    <table>
             <tbody>
-            	<tr>
-                    <td><form:label path="id">id</form:label></td>
-                    <td><form:input path="age" size="20" /></td>
+            	<form:form modelAttribute="searchlist">
+             	<tr>
+                    <td>id</td>
+                    <form:input path="id" />
              	</tr>
                 <tr>
-                    <td><form:label path="name">氏名</form:label></td>
-                    <td><form:input path="name" size="20" /></td>
+                    <td>氏名</td>
+            		<form:input path="name" />
                 </tr>
+                <input type="submit" />
+                </form:form>
             </tbody>
         </table>
-        <input type="submit" />
-    </form:form>
-    <tr><td><a href="${pageContext.request.contextPath}/regoster">登録</a></td>
-    <a>一覧</a>
+
+
+    <td><a href="${pageContext.request.contextPath}/register">登録</a></td>
+   <td> <a>一覧</a><td>
     <c:if test="${not empty searchList}">
 
         <table border="1">
