@@ -28,24 +28,32 @@ public class EmployeeService {
 	    	List<SearchDto> searchlist = employeeMapper.getEmployee(id,name);
 	        return searchlist;
 	    }
-		/**
+	    /**
 		 * @author tono
-		 * 全件取得
-		 *
+		 * @param id
+		 * @param name
+		 *entuty値取得
 		 * */
-	    public List<SearchDto> getFindAll() {
-	        List<SearchDto> searchlist = employeeMapper.getFindAll();
-	        return searchlist;
-	    }
-
 	    public Employee getEmployee(int id) {
 	    	Employee entity = employeeMapper.getEmployee(id);
 			return entity;
 	    }
+	    /**
+		 * @author tono
+		 * @param updatedto
+		 * @return count
+		 *
+		 * */
 		public int update(UpdateDto updatedto) {
 			   int count = employeeMapper.update(updatedto);
 			   return count;
 		}
+		/**
+		 * @author tono
+		 * @param RegisterDto
+		 * @return count
+		 *
+		 * */
 		public int register(RegisterDto regusterdto) {
 			   int count = employeeMapper.register(regusterdto);
 			   return count;
