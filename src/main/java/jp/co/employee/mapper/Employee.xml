@@ -12,11 +12,14 @@
         	description
         from
         	employee
-        where
-        	id = #{id}
-       <if test="name != null">
-        and name= #{name}
-       </if>
+        <where>
+        	<if test="id != null">
+        		id = #{id}
+        	</if>
+       		<if test="name != null">
+       	 		and name= #{name}
+       		</if>
+      </where>
     </select>
     <select id="getSearchAll" resultMap="SearchResult">
      select
@@ -26,27 +29,30 @@
         	description
         from
         	employee
-</select>
-<update id="update">
-    update test
+	</select>
+	<update id="update">
+    update employee
     set
    		name = #{name},
     	file = #{file},
         description = #{desription}
-  where id = #{id}
-</update>
+  	where
+  		id = #{id}
+	</update>
 
-<insert id="register">
-INSERT INTO employee (id , name ,file,description)
-        values (#{id},#{name},#{file},#{description})
-</insert>
+	<insert id="register">
+	INSERT INTO
+		employee
+			(id , name ,file,description)
+        values
+        	(#{id},#{name},#{file},#{description})
+	</insert>
 
-<delete id ="delete" parameterType="int">
+	<delete id ="delete" parameterType="int">
     delete
-    from
-    	test
-    where
-    	id = #{id}
-
-</delete>
+    	from
+    		employee
+    	where
+    		id = #{id}
+	</delete>
 </mapper>

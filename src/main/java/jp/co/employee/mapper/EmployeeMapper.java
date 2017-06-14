@@ -8,9 +8,8 @@ import jp.co.employee.dto.UpdateDto;
 import jp.co.employee.entity.Employee;
 
 public interface  EmployeeMapper {
-		List<SearchDto> getEmployee(Integer id, String name);
+		List<SearchDto> getEmployee(int id, String name);
 
-		List<SearchDto> getFindAll();
 
 		int update(UpdateDto updatedto);
 

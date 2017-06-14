@@ -11,25 +11,25 @@
 
 <h3>登録</h3>
 <table>
-<form:form modelAttribute="register">
+<form method="post" action="register.jsp">
 <tr>
-<td>ID　：</td><form:input type="text" value="id" />
+<td>ID：</td><input type="text" value="id" />
 </tr>
 <tr>
-<td>氏名　：</td><form:input type="text" value="name" />
+<td>氏名　：</td><input type="text" value="name" />
 </tr>
 <tr>
 <td>画像: </td>
-<td>ファイルアップロード </td><form type="file" value="file" />
+<td>ファイルアップロード </td><input type="file" value="file" />
 </tr>
 <tr>
 <td>備考　：</td>
-<form type="text" value="description" />
+<input type="text" value="description" />
 </tr>
 <tr>
-<td>確定</td><form type="text" value="確定" /></td>
+<td>確定</td><type="text" value="確定" /></td>
 </tr>
-</form:form>
+</form>
 </table>
 
 </body>

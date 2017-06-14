@@ -24,7 +24,7 @@
 <td>{$deatail.description}</td>
 </tr>
 </table>
-<form:input path="{$deatail.id}"/></p>
+<form input path="{$deatail.id}"/></p>
 <input type="submit" value="更新"  a href="${pageContext.request.contextPath}/update/${detail.id}/"/>
 <input type="submit" value="削除" a href="${pageContext.request.contextPath}/delete/${detail.id}/">
 <body>
