@@ -6,10 +6,11 @@ import jp.co.employee.dto.RegisterDto;
 import jp.co.employee.dto.SearchDto;
 import jp.co.employee.dto.UpdateDto;
 import jp.co.employee.entity.Employee;
+import jp.co.employee.form.SearchForm;
 
 public interface  EmployeeMapper {
-		List<SearchDto> getEmployee(int id, String name);
 
+		List<SearchDto> getEmployee(SearchForm searchform);
 
 		int update(UpdateDto updatedto);
 
@@ -18,8 +19,6 @@ public interface  EmployeeMapper {
 		int delete(DeleteDto deletedto);
 
 		Employee getEmployee(int id);
-
-
 
 		}
 

@@ -18,9 +18,10 @@ import jp.co.employee.form.SearchForm;
 import jp.co.employee.service.EmployeeService;
 
 /**
- *`@contollor
- * @author tono
- * 差分merge
+ *@contollor　EmployeeController
+ *@author tono
+ *従業員管理を行うコントローラクラス
+ *
  */
 @Controller
 public class EmployeeController {
@@ -32,74 +33,83 @@ public class EmployeeController {
 	 *
 	 * @param model
 	 * @return search
-	 *初期画面
+	 *初期画面表示
 	 */
 	@RequestMapping(value="/search/",method = RequestMethod.GET)
-	public String INIT(Model model) {
-		SearchForm searchform = new SearchForm();
-		model.addAttribute("searchForm", searchform);
+	public String init(Model model) {
 	    return "search";
 	}
 
 		/**
-		 *
 		 * @param model
-		 * @param id
-		 * @param name
+		 * @param searchform
 		 * @return search
-		 *パラメータクラスで行う
-		 *
+		 *検索処理
 		 */
 	@RequestMapping(value="/search/",method = RequestMethod.POST)
-		public String search(Model model, @PathVariable int id ,String name) {
-			List<SearchDto> searchList = (List<SearchDto>) employeeService.getEmployee(id, name);
+		public String search(@ModelAttribute SearchForm searchform,Model model){
+			List<SearchDto> searchList = (List<SearchDto>) employeeService.getEmployee(searchform);
+			model.addAttribute("searchForm", searchform);
 			 model.addAttribute("searchList", searchList );
 		    return "searchList";
 
 		}
-
-		@RequestMapping(value = "/detail/{id}", method = RequestMethod.POST)
-		public String deatail(Model model,@PathVariable int id) {
-//			Employee employee = employeeService.getEmployee(id);
-//		    DetailDto Detail = new DetailDto();
-//		    Detail.setId(employee.getId());
-//		    Detail.setName(employee.getName());
-//		    Detail.setDescription(employee.getDescription());
-//		    Detail.setFile(employee.getFile());
-
+		/**
+		 * @param model
+		 * @param id
+		 * @return detail
+		 * IDを引数に詳細画面に遷移する
+		 */
+		@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+		public String detail(Model model,@PathVariable int id) {
 		    model.addAttribute("detail", employeeService.getEmployee(id));
-		    return "detail";
+		    return "detail/";
 		}
 
 		/**
 		 *
 		 * @param model
-		 * @param id
-		 * @param name
-		 * @return 登録画面
+		 * 登録画面を呼び出す
 		 *
 		 */
 		@RequestMapping(value = "/register", method = RequestMethod.GET)
-		public String register(Model model) {
-			RegisterDto registerDto= new RegisterDto();
-		    model.addAttribute("register", registerDto);
-		    return "/register/";
+		public String registerinit(Model model) {;
+		    return "/register";
 		}
+		/**
+		 *
+		 * @param model
+		 * @paramregisterDto
+		 * 新規従業員データの登録処理
+		 *
+		 */
 		@RequestMapping(value = "/register", method = RequestMethod.POST)
 		public String register(@ModelAttribute RegisterDto registerDto, Model model) {
 		    employeeService.register(registerDto);
 		    model.addAttribute("register", registerDto);
-		    return "/search/";
+		    return "/search";
 		}
 		/**
 		 *
 		 * @param model
-		 * @param id
-		 * @param name
-		 * @return 更新画面
-		 *
+		 * @param updatedto
+		 * @return 検索画面
+		 *データを更新画面に遷移
+		 *	 *
 		 */
-		@RequestMapping(value = "/update", method = RequestMethod.POST)
+		@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+		public String update(Model model, @PathVariable int id) {
+		    model.addAttribute("update", employeeService.getEmployee(id));
+		    return "/update/";
+		}
+		/**
+		 *
+		 * @param model
+		 * @param updatedto
+		 * @return 検索画面
+		 *データを更新する処理
+		 */
+		@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
 		public String update(@ModelAttribute UpdateDto updatedto, Model model) {
 		    employeeService.update(updatedto);
 		    return "/search/";
@@ -107,13 +117,12 @@ public class EmployeeController {
 		/**
 		 *
 		 * @param model
-		 * @param id
-		 * @param name
-		 * @return 削除画面
-		 *
+		 * @param DeleteDto
+		 * @return 検索画面
+		 *データを削除する処理
 		 */
-		@RequestMapping(value = "/delete/", method = RequestMethod.GET)
-		public String testDelete(@ModelAttribute DeleteDto deleteDto, Model model) {
+		@RequestMapping(value = "/detail", method = RequestMethod.POST)
+		public String delete(@ModelAttribute DeleteDto deleteDto, Model model) {
 			 employeeService.delete(deleteDto);
 	    return "search";
 		}

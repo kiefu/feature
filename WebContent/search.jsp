@@ -11,7 +11,7 @@
     <h1>
         <a>検索</a>
     </h1>
-    <form:form modelAttribute="searchForm" action="${action}">
+    <form:form modelAttribute="searchForm" method="POST" action="/search/">
        <div>
            <form:label path="id">ID</form:label><br />
            <form:input path="id"/>

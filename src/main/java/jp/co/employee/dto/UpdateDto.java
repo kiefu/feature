@@ -11,7 +11,7 @@ public class UpdateDto {
 		@NotNull(message="IDを入力してください")
 		@Size( max=idMAX, message = "IDは{max}文字以下を入力してください")
 		@Pattern(regexp="[0-9]*",message="IDは数字である必要があります。")
-		private Integer id;
+		private int id;
 
 		@NotNull(message="名前を入力してください")
 		@Size( max=naMAX, message = "IDは{max}文字以下を入力してください")
@@ -21,10 +21,10 @@ public class UpdateDto {
 
 		private Byte file;
 
-		public Integer getId() {
+		public int getId() {
 			return id;
 		}
-		public void setId(Integer id) {
+		public void setId(int id) {
 			this.id = id;
 		}
 		public String getName() {
